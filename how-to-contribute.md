@@ -26,8 +26,7 @@ This is the repository for ATO RESTful API Guidelines documentation only.
 Please ensure that you are opening issues in the right repository.
 
 ## Recommended setup for contributing
-- Install [Atom][atom], or your favorite editor
-- Install [markdown-toc package][markdown-toc]
+- Install [Brackets][brackets], or your favorite editor
 
 ## Documentation styleguide
 - Use [GitHub-flavored markdown][gfm]
@@ -70,12 +69,10 @@ For additional guidance, read through the [GitHub Flow Guide][github-flow-guide]
 
 Be prepared to address feedback on your pull request and iterate if necessary.
 
-[code-of-conduct]: https://opensource.microsoft.com/codeofconduct/
+[code-of-conduct]: http://contributor-covenant.org/
 [new-issue]: https://github.com/ato-team/restful-api-design-guidelines/issues/new
 [issue-search]: https://github.com/ato-team/restful-api-design-guidelines/issues/issues
 [topic-branch]: http://www.git-scm.com/book/en/v2/Git-Branching-Branching-Workflows#Topic-Branches
 [gfm]: https://guides.github.com/features/mastering-markdown/#GitHub-flavored-markdown
 [github-flow-guide]: https://guides.github.com/introduction/flow/
-[atom-beautify]: https://atom.io/packages/atom-beautify
-[atom]: http://atom.io
-[markdown-toc]: https://atom.io/packages/markdown-toc
+[brackets]: http://brackets.io
