@@ -160,8 +160,8 @@ Resource modelling is an exercise that establishes your API’s key concepts. Be
 URI paths, it may be helpful to first think about the REST API’s resource model.
 
 ### Resource Archetypes
-When modeling an API’s resources, we can start with the some basic resource archetypes. Like design patterns, the 
-resource archetypes help us consistently communicate the structures and behaviors that are commonly found in REST API 
+When modelling an API’s resources, we can start with the some basic resource archetypes. Like design patterns, the 
+resource archetypes help us consistently communicate the structures and behaviours that are commonly found in REST API 
 designs. A REST API is composed of four distinct resource archetypes: **document**, **collection**, **store**, and 
 **controller**.
 
@@ -302,7 +302,7 @@ but if used they must be used consistently.
 | Header          | Type          | Description                                                                 |
 | --------------- | ------------- | --------------------------------------------------------------------------- | 
 | Authorization   | String        | Authorisation header for the request.                                       |
-| Date            | Date          | Timestamp of the request, in [RFC 5322](https://tools.ietf.org/html/rfc5322#section-3.3) date and time format. |
+| Date            | Date          | Timestamp of the request, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time format. |
 | Accept          | Content type  | The requested content type for the response e.g., "application/json".       |
 | Accept-Encoding | Gzip, deflate | REST endpoints should support GZIP and DEFLATE encoding.                    |
 | Accept-Language | "en", etc.    | Specifies the preferred language for the response.                          |
@@ -317,11 +317,14 @@ Services should return the following response headers, where required.
 
 | Header             | Type          | Description                                                                 |
 | ------------------ | ------------- | --------------------------------------------------------------------------- | 
-| Date               | Date          | Timestamp of the response, in [RFC 5322](https://tools.ietf.org/html/rfc5322#section-3.3) date and time format. |
+| Date               | Date          | Timestamp of the response, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time format. |
 | Content-Type       | Content type  | The [mime](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types) type of response body. |
 | Content-Encoding   | Gzip, deflate | GZIP or DEFLATE, as appropriate.                                            |
 | Preference-Applied | return=minimal, return=representation  | Whether a preference indicated in the Prefer request header was applied. |
 | ETag               | String        | The ETag response-header field provides the current value of the entity tag for the requested variant. Used with If-Match, If-None-Match and If-Range to implement optimistic concurrency control. |
+
+
+**Note:** [RFC 5322](https://tools.ietf.org/html/rfc5322#section-3.3) is a profile of [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601). 
 
 ## Standard Response Formats
 
@@ -387,12 +390,14 @@ A JSON error response:
 ```
 {
   "error": {
-    "code": 401,
-    "message": "Request contained invalid credentials.",
-    "status": "UNAUTHENTICATED",
+    "code": 400,
+    "message": "The client specified an invalid argument",
+    "status": "INVALID_ARGUMENT",
     "details": [
       {
-        ...
+        "code": "NullValue",
+        "target": "familyName",
+        "message": "Family name must not be null"
       }
     ]
   }
@@ -486,6 +491,6 @@ Guidelines:
 * [The GitHub API v3](https://developer.github.com/v3/)
 * [Google Cloud Platform: API Design Guide](https://cloud.google.com/apis/design/)
 * [The Microsoft REST API Guidelines](https://github.com/Microsoft/api-guidelines)
-* [Vinay Sahni: Best Practices for Designing a Pragmatic RESTful API](http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)
+* [Vinay Sahni's Best Practices for Designing a Pragmatic RESTful API](http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)
 * [The PayPal API Style Guide](https://github.com/paypal/api-standards/blob/master/api-style-guide.md)
 * [The Cisco API Design Guide](https://github.com/CiscoDevNet/api-design-guide)
