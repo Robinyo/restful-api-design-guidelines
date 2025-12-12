@@ -73,7 +73,7 @@ Services that expose long operations must track "Time to Complete" metrics aroun
 The first choices for any API development team today should be:
 * Pragmatic REST, because an API should be easy to provide, learn and consume
 * JSON, because it is easy to produce and consume
-* OAuth, because it prevents password propagation
+* OAuth 2.0, because it prevents password propagation
 
 We describe these technologies as a first choice, not as an only choice. For example, you might decide to include a 
 query language, like [GraphQL](https://developer.github.com/v4/guides/) or [falcor](https://netflix.github.io/falcor/), 
@@ -471,7 +471,7 @@ restricted audience.
 Guidelines:
 * API management solutions should be used to protect resources. </br>
   See: [Kong](https://github.com/Mashape/kong), [express-gateway](https://github.com/ExpressGateway/express-gateway) and [node-http-proxy](https://github.com/nodejitsu/node-http-proxy).
-* OAuth 2 should be used to protect resources. 
+* OAuth 2 should be used to protect resources. </br>
   [OAuth 2](https://oauth.net/2/) uses [Bearer tokens](https://tools.ietf.org/html/rfc6750) and relies on TLS/SSL for transport encryption. </br>
   See: https://getkong.org/plugins/oauth2-authentication/
 
