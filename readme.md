@@ -1,4 +1,4 @@
-# ATO RESTful API Design Guidelines
+# RESTful API Design Guidelines
 
 * [Introduction](#introduction)
 * [License](#license)
@@ -21,7 +21,6 @@
 * [Security](#security)
 
 ## Introduction
-
 This document provides guidelines and examples to help developers design simple, consistent and easy-to-use RESTful 
 APIs. Much of the material is based on common design challenges faced when developing RESTful web services. Those 
 challenges include: resource and representation design; URIs; usage of HTTP; caching; concurrency control; partial 
@@ -33,10 +32,9 @@ guidelines. Consistency allows teams to leverage common code, patterns, document
 These guidelines aim to achieve the following:
 * Define consistent practices and patterns for all REST APIs.
 * Adhere as closely as possible to accepted REST/HTTP good practices.
-* Make accessing ATO Services via REST APIs as easy as possible.
+* Make accessing Services via REST APIs as easy as possible.
 
 ### Recommended Reading
-
 Understanding the philosophy behind the 
 [REST Architectural Style](https://en.wikipedia.org/wiki/Representational_state_transfer) is essential when designing RESTful APIs.
 If you are new to RESTful API design, here are some good resources:
@@ -48,7 +46,6 @@ If you are new to RESTful API design, here are some good resources:
 * [HTTP: The Definitive Guide](http://shop.oreilly.com/product/9781565925090.do)
 
 ## License
-
 This work is licensed under the Creative Commons Attribution 3.0 Australia (CC BY 3.0 AU) License. To view a copy of 
 this license, visit https://creativecommons.org/licenses/by/3.0/au/.
 
@@ -73,7 +70,6 @@ measured on the initial request and measures how long that call (not the overall
 Services that expose long operations must track "Time to Complete" metrics around those operations.
 
 ## Our Technology Recommendations for APIs
-
 The first choices for any API development team today should be:
 * Pragmatic REST, because an API should be easy to provide, learn and consume
 * JSON, because it is easy to produce and consume
@@ -84,7 +80,6 @@ query language, like [GraphQL](https://developer.github.com/v4/guides/) or [falc
 with your API.
 
 ## Pragmatic REST
-
 The REST architectural style leverages the HTTP protocol to define an approach to inter-computer communications.
 It uses URI's to define “resources” and the standard HTTP verbs (POST, GET, PUT, and DELETE) as synonyms for create, 
 read, update, and delete (CRUD).
@@ -120,7 +115,6 @@ explicitly request a particular version via the Accept Header.
 Security, rate limiting, routing, and so on can and should be hidden in the HTTP headers.
 
 ## Resource Oriented Design
-
 When desiging resource-oriented APIs, follow these steps:
 * Determine what types of resources an API provides
 * Determine the relationships between resources
@@ -129,7 +123,6 @@ When desiging resource-oriented APIs, follow these steps:
 * Attach a minimum set of methods to the resources
 
 ## URI Authority Design
-
 This section discusses the naming conventions that should be used for the authority portion of a REST API.
 
 ### Consistent subdomain names should be used for your APIs
@@ -172,6 +165,7 @@ field and link-based structure, the document type is the conceptual base archety
 In other words, the three other resource archetypes can be viewed as specialisations of the document archetype.
 
 Each URI below identifies a document resource:
+
 ```
 https://api.ato.gov.au/forms/form-1a
 https://api.ato.gov.au/fact-sheets/super-and-tax
@@ -181,6 +175,7 @@ A document may have child resources that represent its specific subordinate conc
 different resource types together under a single parent, a document is a logical candidate for a REST API’s root 
 resource, which is also known as the "service root". The example URI below identifies the service root, which is the 
 Superannuation business area's REST API entry point:
+
 ```
 https://api.superannuation.ato.gov.au
 ```
@@ -194,6 +189,7 @@ collection. However, it is up to the collection to choose to create a new resour
 chooses what it wants to contain and also decides the URIs of each contained resource.
 
 Each URI below identifies a collection resource:
+
 ```
 https://api.superannuation.ato.gov.au/forms
 https://api.superannuation.ato.gov.au/fact-sheets
@@ -210,6 +206,7 @@ the store.
 
 The example interaction below shows a user (with ID 1234) of a client program using a fictional REST API to insert a 
 document resource named "receipt-101" in his or her store of deductions:
+
 ```
 PUT /users/1234/deductions/receipt-101
 ```
@@ -223,12 +220,12 @@ methods (create, retrieve, update, and delete).
 Controller names typically appear as the last segment in a URI path, with no child resources to follow them in the 
 hierarchy. The example below shows a controller resource (from a fictional REST API) that allows a client to resend an 
 alert to a user:
+
 ```
 POST /alerts/4321/resend
 ```
 
 ## URI Path Design
-
 Each URI path segment, separated by forward slashes (/), represents a design opportunity. Assigning meaningful values 
 to each path segment helps to clearly communicate the hierarchical structure of a REST API’s resource model.
 
@@ -241,6 +238,7 @@ Guidelines:
 
 ## URI Query Design
 A URI’s query comes after the path and before the optional fragment:
+
 ```
 URI = scheme "://" authority "/" path [ "?" query ] [ "#" fragment ]
 ```
@@ -257,7 +255,6 @@ See: [sorting](https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines
 [filtering](https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#97-filtering) collections.
 
 ## Standard Request Methods
-
 Each HTTP method has specific, well-defined semantics within the context of a REST API’s resource model. Below is a 
 list of methods that REST services should support:
 
@@ -287,7 +284,6 @@ The recommended usage of the HTTP’s POST method for each of the four resource 
  
  
 ## Standard Request Headers 
-
 HTTP defines a set of standard headers, some of which provide information about a requested resource. Other 
 headers indicate something about the representation carried by the message. And, a few headers serve as directives to 
 control intermediary caches.
@@ -296,7 +292,7 @@ All header values must follow the syntax rules set forth in the specification wh
 Many HTTP headers are defined in [RFC 7231](https://tools.ietf.org/html/rfc7231), however a complete list of approved 
 headers can be found in the [IANA Header Registry](http://www.iana.org/assignments/message-headers/message-headers.xhtml).
 
-Below is a table of request headers that should be used by ATO RESTful API services. Using these headers is not mandated, 
+Below is a table of request headers that should be used by RESTful API services. Using these headers is not mandated, 
 but if used they must be used consistently.
 
 | Header          | Type          | Description                                                                 |
@@ -312,7 +308,6 @@ but if used they must be used consistently.
 | If-Match, If-None-Match, If-Range  | String | Services that support updates to resources using optimistic concurrency control must support the If-Match header to do so. Services may also use other headers related to ETags as long as they follow the HTTP specification. |
 
 ## Standard Response Headers 
-
 Services should return the following response headers, where required.
 
 | Header             | Type          | Description                                                                 |
@@ -327,7 +322,6 @@ Services should return the following response headers, where required.
 **Note:** [RFC 5322](https://tools.ietf.org/html/rfc5322#section-3.3) is a profile of [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601). 
 
 ## Standard Response Formats
-
 If an organisation wants to provide the best possible experience for developers, then they must provide data in the 
 formats developers are accustomed to using. For example, when a mobile or other low-bandwidth client is involved, 
 developers expect JSON message payloads.
@@ -343,7 +337,7 @@ Guidelines:
 Pagination should be supported using the Link header introduced by [RFC 5988](https://tools.ietf.org/html/rfc5988#page-6).
 
 An API that uses the Link header can return a set of ready-made links so the API consumer doesn't have to construct 
-links themselves. This is especially important when pagination is [cursor](https://developers.facebook.com/docs/graph-api/using-graph-api/#paging) based. 
+links themselves. This is especially important when pagination is [cursor](https://developers.facebook.com/docs/graph-api/results) based. 
 
 Here is an example of a Link header used properly (taken from GitHub's documentation):
 
@@ -366,21 +360,18 @@ The possible `rel` values are:
 then you can use a custom HTTP header.
 
 ## Canonical Data Models
+There is a very good discussion of canonical data models and service design in the Eben Hewitt's [Java SOA Cookbook](http://shop.oreilly.com/product/9780596520731.do).
+[Enterprise Integration Patterns](http://www.enterpriseintegrationpatterns.com/)) also includes a discussion of canonical data models.
 
-The ATO has a canonical data model (as discussed in Woolf and Hohpe’s [Enterprise Integration Patterns](http://www.enterpriseintegrationpatterns.com/)).
- 
 Guidelines:
 * Define schemas local to services that reuse a separate layer of schemas, defined independently of services, at the enterprise level.
 
-**Note:** There is a very good discussion of canonical data models and service design in the Eben Hewitt's [Java SOA Cookbook](http://shop.oreilly.com/product/9780596520731.do).
-
 ## Errors
-
-The ATO's REST APIs use a simple protocol-agnostic error model, which allows us to expose a consistent experience 
-across different APIs, API protocols, and error contexts (for instance, asynchronous, batch, or workflow errors).
+RESTful APIs should use a simple protocol-agnostic error model, which enables a consistent experience across different 
+APIs, API protocols, and error contexts (for instance, asynchronous, batch, or workflow errors).
 
 ### Error Codes
-The ATO's APIs use canonical error codes. Individual APIs should avoid defining additional error codes, since 
+RESTful APIs should use a standard set of error codes. Individual APIs should avoid defining additional error codes, since 
 developers are very unlikely to write logic to handle a large number of error codes. Handing an average of three error 
 codes per API call would mean most service logic would just be for error handling, which would not be a good developer 
 experience.
@@ -416,7 +407,7 @@ are divided into five categories:
 | 4xx: Client Error  | This category of error status codes points the finger at clients.                              |
 | 5xx: Server Error  | The server takes responsibility for these error status codes.                                  |
 
-Below is a table containing all of the ATO's canonical error codes and a short description of their cause. 
+Below is a suggested list of standard error codes and a short description of their cause. 
 To handle an error, you can check the description for the returned status code and modify your call accordingly.
 
 | HTTP | Type                | Description                                                                 |
@@ -462,10 +453,9 @@ clients. When translating errors, we suggest the following:
 Guidelines:
 * Hide implementation details and confidential information.
 * Adjust the party responsible for the error. For example, a server that receives an INVALID_ARGUMENT (400) error from 
-another service should propagate an INTERNAL (500) error  to its own caller.
+another service should propagate an INTERNAL (500) error to its own caller.
 
 ## Versioning
-
 A REST API is composed of an assembly of interlinked resources: its resource model. The version of each resource is 
 conveyed through its representational form and state.
 
@@ -474,7 +464,6 @@ Guidelines:
 * Entity tags should be used to manage representational state versions
 
 ## Security
-
 Many RESTful APIs expose resources that are associated with a specific client and/or user. For example, a REST API’s 
 documents may contain private information and its controllers may expose operations intended to be executed by a 
 restricted audience.
