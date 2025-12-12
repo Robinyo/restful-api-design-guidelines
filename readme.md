@@ -469,13 +469,11 @@ documents may contain private information and its controllers may expose operati
 restricted audience.
 
 Guidelines:
-* API management solutions should be used to protect resources. See: [Kong](https://github.com/Mashape/kong), 
-  [express-gateway](https://github.com/ExpressGateway/express-gateway) and [node-http-proxy](https://github.com/nodejitsu/node-http-proxy).
+* API management solutions should be used to protect resources. </br>
+  See: [Kong](https://github.com/Mashape/kong), [express-gateway](https://github.com/ExpressGateway/express-gateway) and [node-http-proxy](https://github.com/nodejitsu/node-http-proxy).
 * OAuth 2 should be used to protect resources. 
-
-   [OAuth 2](https://oauth.net/2/) uses [Bearer tokens](https://tools.ietf.org/html/rfc6750) and relies on TLS/SSL for 
-   transport encryption. 
-   See: https://getkong.org/plugins/oauth2-authentication/
+  [OAuth 2](https://oauth.net/2/) uses [Bearer tokens](https://tools.ietf.org/html/rfc6750) and relies on TLS/SSL for transport encryption. </br>
+  See: https://getkong.org/plugins/oauth2-authentication/
 
 ### Additional Resources
 * [The GitHub API v3](https://developer.github.com/v3/)
