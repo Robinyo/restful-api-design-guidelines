@@ -361,7 +361,7 @@ then you can use a custom HTTP header.
 
 ## Canonical Data Models
 There is a very good discussion of canonical data models and service design in the Eben Hewitt's [Java SOA Cookbook](http://shop.oreilly.com/product/9780596520731.do).
-[Enterprise Integration Patterns](http://www.enterpriseintegrationpatterns.com/) also includes a discussion of canonical data models.
+The [Enterprise Integration Patterns](http://www.enterpriseintegrationpatterns.com/) book, also includes a discussion of canonical data models.
 
 Guidelines:
 * Define schemas local to services that reuse a separate layer of schemas, defined independently of services, at the enterprise level.
